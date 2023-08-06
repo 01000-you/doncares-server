@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Driver Detail</title>
+</head>
+<body>
+    <h1>Driver Detail</h1>
+    <p><strong>Name:</strong> {{ driver.name }}</p>
+    <p><strong>Region:</strong> {{ driver.region }}</p>
+    <p><strong>Phone Number:</strong> {{ driver.phone_number }}</p>
+    <p><strong>App User ID:</strong> {{ driver.app_user_id }}</p>
+    <p><strong>Created At:</strong> {{ driver.created_at }}</p>
+    <p><strong>Updated At:</strong> {{ driver.updated_at }}</p>
+    <a href="{% url 'driver_update' driver.pk %}">Update</a>
+    <form action="{% url 'driver_delete' driver.pk %}" method="POST" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+</body>
+</html>

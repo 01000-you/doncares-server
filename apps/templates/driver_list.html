@@ -1,0 +1,59 @@
+<!-- driver_list.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Driver List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+    
+        th {
+            background-color: #f2f2f2;
+        }
+    
+        /* 작업 링크들 사이에 간격 추가 */
+        td a {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Driver List</h1>
+    <a href="{% url 'driver_create' %}">새로운 드라이버 생성</a>
+    <form action="{% url 'driver_search' %}" method="GET">
+        <input type="text" name="q" placeholder="검색...">
+        <button type="submit">검색</button>
+    </form>
+    <table>
+        <tr>
+            <th>APP USER ID</th>
+            <th>이름</th>
+            <th>지역</th>
+            <th>전화번호</th>
+            <th>작업</th>
+        </tr>
+        {% for driver in drivers %}
+        <tr>
+            <td>{{ driver.app_user_id }}</td>
+            <td>{{ driver.name }}</td>
+            <td>{{ driver.region }}</td>
+            <td>{{ driver.phone_number }}</td>
+            <td>
+                <a href="{% url 'driver_detail' driver.pk %}">상세보기</a>
+                <a href="{% url 'driver_update' driver.pk %}">수정</a>
+                <a href="{% url 'driver_delete' driver.pk %}">삭제</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

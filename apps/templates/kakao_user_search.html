@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KakaoUser Search</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .search-form {
+            margin-bottom: 20px;
+        }
+        .search-input {
+            padding: 5px;
+            font-size: 16px;
+        }
+        .search-button {
+            padding: 5px 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .delete-btn {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .edit-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // JavaScript 코드 생략
+    </script>
+</head>
+<body>
+    <h1>KakaoUser Search</h1>
+    <div class="search-form">
+        <form method="GET" action="{% url 'kakao_user_search' %}">
+            <input type="text" name="search_query" class="search-input" placeholder="Enter a search query">
+            <button type="submit" class="search-button">Search</button>
+        </form>
+    </div>
+
+    {% if search_results %}
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nickname</th>
+            <th>Profile Image URL</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+        {% for user in search_results %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.nickname }}</td>
+            <td>{{ user.profile_image_url }}</td>
+            <td>{{ user.phone_number }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+                <!-- Add action buttons here -->
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>

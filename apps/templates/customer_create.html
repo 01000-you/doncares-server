@@ -1,0 +1,17 @@
+<!-- customer_create.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Customer</title>
+</head>
+<body>
+    <h1>Create Customer</h1>
+    <form action="{% url 'customer_create' %}" method="POST" enctype="application/x-www-form-urlencoded">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create</button>
+    </form>
+    <a href="{% url 'customer_list' %}">Back to List</a>
+</body>
+</html>

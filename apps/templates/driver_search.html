@@ -1,0 +1,54 @@
+<!-- driver_search.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>기사님 검색</title>
+    <style>
+        /* 스타일은 생략 */
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // 함수를 만들어 모든 기사님을 불러오는 기능 구현
+            function loadAllDrivers() {
+                var allDriversUrl = "{% url 'driver_list' %}";
+
+                // 전체 기사님을 불러와서 페이지 내용 업데이트
+                $.get(allDriversUrl, function(data) {
+                    $("#driver-list-result").html(data);
+                });
+            }
+
+            $("#search-form").submit(function(e) {
+                e.preventDefault();
+                var searchQuery = $(this).find("input[name='search_query']").val();
+                var searchUrl = "{% url 'driver_search' %}";
+                var formData = { 'search_query': searchQuery };
+
+                // 검색 결과를 불러와서 페이지 내용 업데이트
+                $.get(searchUrl, formData, function(data) {
+                    $("#driver-list-result").html(data);
+                });
+            });
+
+            // 모든 기사님 리스트 보기 버튼 클릭 시 전체 리스트를 불러옴
+            $("#show-all-btn").on("click", function() {
+                loadAllDrivers();
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>기사님 검색</h1>
+    <form id="search-form" method="GET" action="{% url 'driver_search' %}">
+        <input type="text" name="search_query" placeholder="기사님 이름, 전화번호, 지역으로 검색">
+        <button type="submit">검색</button>
+    </form>
+    <button type="button" id="show-all-btn">모든 기사님 보기</button>
+    <div id="driver-list-result">
+        <!-- 검색 결과가 여기에 표시됩니다 --> 
+        {% include 'driver_list_results.html' %}
+    </div>
+</body>
+</html>

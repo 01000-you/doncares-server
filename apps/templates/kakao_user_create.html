@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>카카오 사용자 생성</title>
+</head>
+<body>
+    <h1>카카오 사용자 생성</h1>
+    <form method="post" enctype="application/x-www-form-urlencoded">
+        {% csrf_token %}
+        <label for="nickname">닉네임:</label>
+        <input type="text" id="nickname" name="nickname" required><br>
+        <label for="profile_image_url">프로필 이미지 URL:</label>
+        <input type="text" id="profile_image_url" name="profile_image_url" required><br>
+        <label for="phone_number">전화번호:</label>
+        <input type="text" id="phone_number" name="phone_number" required><br>
+        <label for="email">이메일:</label>
+        <input type="email" id="email" name="email" required><br>
+        <label for="app_user_id">App 사용자 ID:</label>
+        <input type="number" id="app_user_id" name="app_user_id" required><br>
+        <button type="submit">생성</button>
+    </form>
+    <a href="{% url 'kakao_user_list' %}">목록으로 돌아가기</a>
+</body>
+</html>

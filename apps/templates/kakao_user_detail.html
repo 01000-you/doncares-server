@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kakao User Detail</title>
+</head>
+<body>
+    <h1>{{ user.nickname }}</h1>
+    <p>Profile Image URL: {{ user.profile_image_url }}</p>
+    <p>Phone Number: {{ user.phone_number }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>App User ID: {{ user.app_user_id }}</p>
+    <a href="{% url 'kakao_user_update' user.pk %}">Update</a>
+    <a href="{% url 'kakao_user_delete' user.pk %}">Delete</a>
+    <a href="{% url 'kakao_user_list' %}">Back to List</a>
+</body>
+</html>

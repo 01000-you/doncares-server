@@ -1,0 +1,5 @@
+<form method="post" enctype="application/x-www-form-urlencoded">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Create Driver</button>
+</form>

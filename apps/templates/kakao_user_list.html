@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kakao User List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+    
+        th {
+            background-color: #f2f2f2;
+        }
+    
+        /* Add some spacing to the action links */
+        td a {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kakao User List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nickname</th>
+                <th>Profile Image URL</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>App User ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.nickname }}</td>
+                <td>{{ user.profile_image_url }}</td>
+                <td>{{ user.phone_number }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.app_user_id }}</td>
+                <td>
+                    <a href="{% url 'kakao_user_detail' user.pk %}">Detail</a>
+                    <a href="{% url 'kakao_user_update' user.pk %}">Update</a>
+                    <a href="{% url 'kakao_user_delete' user.pk %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'kakao_user_create' %}">Create User</a>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!-- customer_search.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Search</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+    
+        th {
+            background-color: #f2f2f2;
+        }
+    
+        /* Add some spacing to the action links */
+        td a {
+            margin: 0 5px;
+        }
+    </style>
+    
+</head>
+<body>
+    <h1>Customer Search</h1>
+    <form action="{% url 'customer_search' %}" method="GET">
+        <input type="text" name="q" value="{{ query }}" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Region</th>
+            <th>Target</th>
+            <th>Period</th>
+            <th>CreateAt</th>
+            <th>updatedAt</th>
+            <th>Actions</th>
+        </tr>
+        {% for customer in customers %}
+        <tr>
+            <td>{{ customer.app_user_id }}</td>
+            <td>{{ customer.name }}</td>
+            <td>{{ customer.region }}</td>
+            <td>{{ customer.target }}</td>
+            <td>{{ customer.period }}</td>
+            <td>{{ customer.created_at }}</td>
+            <td>{{ customer.updated_at }}</td>
+            <td>
+                <a href="{% url 'customer_detail' customer.pk %}">View</a>
+                <a href="{% url 'customer_update' customer.pk %}">Update</a>
+                <a href="{% url 'customer_delete' customer.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'customer_list' %}">Back to List</a>
+</body>
+</html>
